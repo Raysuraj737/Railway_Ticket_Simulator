@@ -1,0 +1,136 @@
+/* ================= POPUP OVERLAY ================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* ================= POPUP BOX ================= */
+.popup-box {
+  background: #ffffff;
+  width: 420px;
+  max-width: 92%;
+  border-radius: 14px;
+  padding: 22px;
+  animation: popupFade 0.35s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+}
+
+/* ================= HEADER ================= */
+.popup-box h2 {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.popup-box > p {
+  text-align: center;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 14px;
+}
+
+/* ================= TICKET BLOCK ================= */
+.ticket {
+  background: #f9fafb;
+  border: 1px dashed #c7d2fe;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.ticket p {
+  margin: 3px 0;
+  color: #333;
+  font-size: 13px;
+}
+
+/* ================= QR ================= */
+.qr {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.popup-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.popup-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.popup-actions button:nth-child(1) {
+  background: #2563eb;
+  color: #fff;
+}
+
+.popup-actions button:nth-child(2) {
+  background: #16a34a;
+  color: #fff;
+}
+
+.popup-actions button:nth-child(3) {
+  background: #ef4444;
+  color: #fff;
+}
+
+.popup-actions button:hover {
+  opacity: 0.9;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes popupFade {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= PRINT ================= */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .popup-actions {
+    display: none;
+  }
+
+  .popup-box {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
