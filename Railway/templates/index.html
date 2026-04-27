@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA_Project</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='front.css')}}">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="main">
+        <h1>Railway Reservation Simulator</h1>
+        <div class="buttons">
+        <a href="{{ url_for('add_passenger') }}"> <button name="AddPass"><span>Add Passenger</span></a>
+            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+        </button><br>
+        <a href="{{ url_for('cancel_passenger') }}"> <button name="CancelPass"><span>Cancel Passenger</span></a>
+            <i class="fa fa-ban" aria-hidden="true"></i>
+        </button><br>
+        <a href="{{ url_for('search') }}"> <button name="SearchPass"><span>Search Passenger</span>
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button></a><br>
+        <a href="{{ url_for('display_passengers') }}">
+        <button name="display"><span>Display List</span>
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+        </button>
+        </a>
+        </div>
+    </div>
+</body>
+</html>
