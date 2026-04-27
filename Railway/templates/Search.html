@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Passenger</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='Search.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="heading">
+      <h1>Search Passenger</h1>
+    </div>
+
+    <div class="main">
+      {% if passengers %}
+      <div class="toast success">
+        <i class="fa fa-check-circle"></i> Passenger Found!
+      </div>
+      {% elif not_found %}
+      <div class="toast error">
+        <i class="fa fa-times-circle"></i> Passenger Not Found!
+      </div>
+      {% endif %}
+
+      <form method="POST">
+        <div class="field">
+          <i class="fa fa-id-card"></i>
+          <input type="number" name="id" placeholder=" " />
+          <label>Passenger ID</label>
+        </div>
+
+        <div class="field">
+          <i class="fa fa-user"></i>
+          <input type="text" name="name" placeholder=" " />
+          <label>Passenger Name</label>
+        </div>
+
+        <button type="submit">SEARCH</button>
+      </form>
+
+      <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+    </div>
+
+    {% if passengers %}
+    <h2 style="text-align: center; margin-top: 30px">Passenger Details</h2>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Berth</th>
+        <th>Status</th>
+      </tr>
+
+      {% for p in passengers %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.age }}</td>
+        <td>{{ p.src }}</td>
+        <td>{{ p.dest }}</td>
+        <td>{{ p.berth }}</td>
+
+        {% if p.status|trim == "CONFIRMED" %}
+        <td style="color: blue; font-weight: bold">{{ p.status }}</td>
+        {% else %}
+        <td style="color: red; font-weight: bold">{{ p.status }}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </body>
+</html>
