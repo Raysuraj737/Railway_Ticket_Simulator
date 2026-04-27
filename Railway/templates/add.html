@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Passenger</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='AddPassenger.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="heading">
+      <h1>BOOK TICKET</h1>
+    </div>
+
+    <div class="main">
+      {% if success %}
+      <div class="success-msg">
+        <i class="fa fa-check-circle"></i>
+        Passenger(s) added successfully!
+      </div>
+      {% endif %}
+
+      <form action="{{ url_for('add_passenger') }}" method="POST">
+        <div id="passengerContainer">
+          <div class="passenger-block">
+            <div class="passenger-header">
+              <h3 class="head-in">Passenger 1</h3>
+              <button
+                type="button"
+                class="remove"
+                onclick="removePassenger(this)"
+              >
+                ✖
+              </button>
+            </div>
+
+            <div class="field">
+              <i class="fa fa-user"></i>
+              <input type="text" name="name[]" required placeholder=" " />
+              <label>Name</label>
+            </div>
+
+            <div class="field">
+              <i class="fa fa-birthday-cake"></i>
+              <input type="number" name="age[]" required placeholder=" " />
+              <label>Age</label>
+            </div>
+
+            <div class="field">
+              <i class="fa fa-train"></i>
+              <input type="text" name="src[]" required placeholder=" " />
+              <label>Source</label>
+            </div>
+
+            <div class="field">
+              <i class="fa fa-map-marker"></i>
+              <input type="text" name="dest[]" required placeholder=" " />
+              <label>Destination</label>
+            </div>
+
+            <div class="field">
+              <i class="fa fa-bed"></i>
+              <input list="levels" name="berth[]" required placeholder=" " />
+              <label>Berth</label>
+            </div>
+          </div>
+        </div>
+
+        <datalist id="levels">
+          <option value="Lower"></option>
+          <option value="Middle"></option>
+          <option value="Upper"></option>
+        </datalist>
+
+        <div class="below">
+          <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+          <button type="button" class="add" onclick="addPassenger()">
+            ADD +
+          </button>
+        </div>
+
+        <button type="submit" class="sub">SUBMIT</button>
+      </form>
+    </div>
+
+    {% if passengers %}
+    <div class="overlay" id="popup">
+      <div class="popup-box">
+        <h2>Railway Ticket</h2>
+
+        {% for p in passengers %}
+        <div class="ticket">
+          <p><b>ID:</b> {{ p.id }}</p>
+          <p><b>Name:</b> {{ p.name }}</p>
+          <p><b>Age:</b> {{ p.age }}</p>
+          <p><b>From:</b> {{ p.src }}</p>
+          <p><b>To:</b> {{ p.dest }}</p>
+          <p><b>Berth:</b> {{ p.berth }}</p>
+          <p><b>Status:</b> {{ p.status }}</p>
+          <hr />
+        </div>
+        {% endfor %}
+
+        <div class="no-print">
+          <button onclick="printTicket()">Download PDF</button>
+          <button onclick="closePopup()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
