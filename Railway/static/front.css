@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(images/ahamed-sameel-8T7urQLgX6g-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.main {
+  /*width: 30%;
+    margin: 0 auto;*/
+  width: 500px;
+  min-height: 600px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  /*border: 2px solid black;
+    border-radius: 10px;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("free-walking-tour-salzburg-kvygogtvaHc-unsplash.jpg");
+    background-size: cover;
+    background-position: center;*/
+}
+
+.buttons {
+  margin-top: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+button {
+  margin-top: 10px;
+  width: 120%;
+  height: auto;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border: 5px solid black;
+  border-radius: 10px;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 30px;
+  background-image: url(images/onkarphoto-dOsJ7YIFSqM-unsplash.jpg);
+  background-size: cover;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: -2px -2px 20px black;
+}
+button:hover {
+  cursor: pointer;
+  background-color: azure;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
