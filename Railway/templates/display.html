@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Passenger List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='display.css')}}"
+  </head>
+
+  <body>
+    <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+    {% if lst %}
+    <h2>Passengers List</h2>
+
+    <table>
+      <tr>
+        <th>S.No</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Berth</th>
+        <th>Status</th>
+      </tr>
+
+      {% for passenger in lst %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ passenger.id }}</td>
+        <td>{{ passenger.name }}</td>
+        <td>{{ passenger.age }}</td>
+        <td>{{ passenger.src }}</td>
+        <td>{{ passenger.dest }}</td>
+        <td>{{ passenger.berth }}</td>
+        {% if passenger.status | trim == "CONFIRMED" %}
+        <td class="confirmed">{{ passenger.status }}</td>
+        {% else %}
+        <td class="waiting">{{ passenger.status }}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+    <p class="no-records">No Records Found</p>
+    {% endif %}
+  </body>
+</html>
