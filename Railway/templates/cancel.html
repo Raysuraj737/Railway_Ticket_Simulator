@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cancel Passenger</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='CancelPassenger.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="heading">
+      <h1>Cancel Ticket</h1>
+    </div>
+
+    <div class="main">
+      {% if not_valid %}
+      <div class="error-msg">
+        <i class="fa fa-times-circle"></i>
+        Invalid Passenger ID!
+      </div>
+
+      {% elif mismatch %}
+      <div class="error-msg">
+        <i class="fa fa-exclamation-circle"></i>
+        Mismatch Data!
+      </div>
+
+      {% elif success %}
+      <div class="success-msg">
+        <i class="fa fa-check-circle"></i>
+        Passenger cancelled successfully!
+      </div>
+      {% endif %}
+
+      <form
+        action="{{ url_for('cancel_passenger') }}"
+        method="POST"
+        id="cancelForm"
+      >
+        <div class="field">
+          <i class="fa fa-user"></i>
+          <input type="text" name="name" placeholder=" " required />
+          <label>Passenger Name</label>
+        </div>
+
+        <div class="field">
+          <i class="fa fa-id-card"></i>
+          <input type="number" name="id" placeholder=" " required />
+          <label>Passenger ID</label>
+        </div>
+
+        <button type="button" onclick="openConfirmPopup()">
+          <i class="fa fa-ban"></i> CANCEL PASSENGER
+        </button>
+      </form>
+
+      <a href="{{ url_for('history') }}" class="history-btn">
+        <i class="fa fa-history"></i> View Cancel History
+      </a>
+
+      <a href="{{ url_for('index') }}" class="back-btn"> ← Back to Home </a>
+    </div>
+
+    <div class="overlay" id="confirmPopup" style="display: none">
+      <div class="popup-box warning">
+        <i class="fa fa-exclamation-triangle"></i>
+        <h2>Confirm Cancellation</h2>
+        <p>
+          Are you sure you want to cancel this passenger?<br />
+          <b>This action cannot be undone.</b>
+        </p>
+
+        <div class="popup-actions">
+          <button class="no-btn" onclick="closeConfirmPopup()">No</button>
+          <button class="yes-btn" onclick="submitCancelForm()">
+            Yes, Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+  </body>
+</html>
